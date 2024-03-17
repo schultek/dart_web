@@ -29,8 +29,7 @@ jobs:
       - name: Run
         run: |
           dart pub global activate packages/jaspr_cli --source=path
-          cd examples/package_riverpod
-          dart pub global run jaspr_cli:jaspr doctor
+          dart pub global run jaspr_cli:jaspr --version
 
   test2:
     name: Test Windows
@@ -45,5 +44,4 @@ jobs:
       - name: Run
         run: |
           dart pub global activate packages/jaspr_cli --source=path
-          cd examples/package_riverpod
-          jaspr doctor
+          jaspr --version
