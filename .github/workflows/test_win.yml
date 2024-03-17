@@ -16,32 +16,34 @@ on:
 name: Test Pipeline
 
 jobs:
-  test:
-    name: Test Windows
+  test1:
+    name: Global Cli Test
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - uses: dart-lang/setup-dart@v1.3
-      - uses: subosito/flutter-action@v2
 
       - name: Run
         run: |
-          dart pub global activate packages/jaspr_cli --source=path
-          dart pub global run jaspr_cli:jaspr --version
+          dart create -t cli cli_test
+          echo "executables:\n  cli_test:" >> cli_test/pubspec.yaml
+          dart pub global activate cli_test --source=path
+          dart pub global run cli_test --version
 
   test2:
-    name: Test Windows
+    name: Standalone Cli Test
     runs-on: windows-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - uses: dart-lang/setup-dart@v1.3
-      - uses: subosito/flutter-action@v2
 
       - name: Run
         run: |
-          dart pub global activate packages/jaspr_cli --source=path
-          jaspr --version
+          dart create -t cli cli_test
+          echo "executables:\n  cli_test:" >> cli_test/pubspec.yaml
+          dart pub global activate cli_test --source=path
+          cli_test --version
