@@ -1,0 +1,42 @@
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/test_win.yml'
+      - 'packages/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/test_win.yml'
+      - 'packages/**'
+
+name: Test Pipeline
+
+jobs:
+  test:
+    name: Test Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - uses: dart-lang/setup-dart@v1.3
+      - uses: subosito/flutter-action@v2
+
+      - name: Version
+        run: dart --version
+          
+      - name: Version
+        run: |
+          dart --version
+
+      - name: Bootstrap
+        run: |
+          dart pub global activate melos
+          melos bootstrap --no-private
+
+      - name: Test CLI
+        run: melos run test:cli
