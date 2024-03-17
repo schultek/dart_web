@@ -44,5 +44,6 @@ jobs:
 
       - name: Run
         run: |
-          dart pub global activate melos
-          melos bootstrap --no-private
+          dart pub global activate packages/jaspr_cli --source=path
+          cd examples/package_riverpod
+          jaspr_cli:jaspr doctor
