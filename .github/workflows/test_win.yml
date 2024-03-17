@@ -37,6 +37,7 @@ jobs:
         run: |
           dart pub global activate melos
           melos bootstrap --no-private
+          jaspr --disable-analytics
 
       - name: Test CLI
         run: melos run test:cli
