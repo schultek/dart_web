@@ -21,7 +21,7 @@ jobs:
       - name: Run
         run: |
           dart create -t cli cli_test
-          echo "executables:\n  cli_test:" >> cli_test/pubspec.yaml
+          echo "executables: {cli_test: }" >> cli_test/pubspec.yaml
           dart pub global activate cli_test --source=path
           dart pub global run cli_test --version
 
