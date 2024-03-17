@@ -8,7 +8,7 @@ on:
       - 'packages/**'
   push:
     branches:
-      - main
+      - wintest
     paths:
       - '.github/workflows/test_win.yml'
       - 'packages/**'
@@ -28,7 +28,7 @@ jobs:
 
       - name: Version
         run: dart --version
-          
+
       - name: Version
         run: |
           dart --version
