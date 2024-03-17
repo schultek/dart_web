@@ -29,6 +29,7 @@ jobs:
       - name: Bootstrap
         run: |
           dart pub global activate jaspr_cli
+          cd examples/package_riverpod
           dart pub global run jaspr_cli:jaspr doctor
 
   test2:
@@ -47,4 +48,6 @@ jobs:
           melos bootstrap --no-private
 
       - name: Bootstrap
-        run: jaspr doctor
+        run: |
+          cd examples/package_riverpod
+          jaspr doctor
