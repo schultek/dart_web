@@ -26,7 +26,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1.3
       - uses: subosito/flutter-action@v2
 
-      - name: Bootstrap
+      - name: Run
         run: |
           dart pub global activate jaspr_cli
           cd examples/package_riverpod
@@ -42,12 +42,8 @@ jobs:
       - uses: dart-lang/setup-dart@v1.3
       - uses: subosito/flutter-action@v2
 
-      - name: Bootstrap
+      - name: Run
         run: |
-          dart pub global activate melos
-          melos bootstrap --no-private
-
-      - name: Bootstrap
-        run: |
+          dart pub global activate jaspr_cli
           cd examples/package_riverpod
           jaspr doctor
