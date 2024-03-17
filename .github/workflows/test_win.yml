@@ -28,9 +28,9 @@ jobs:
 
       - name: Bootstrap
         run: |
-          dart pub global activate melos
+          dart pub global activate jaspr
           melos bootstrap --no-private
-          dart pub global run jaspr --disable-analytics
+          dart pub global run jaspr_cli:jaspr doctor
 
   test2:
     name: Test Windows
@@ -46,4 +46,4 @@ jobs:
         run: |
           dart pub global activate melos
           melos bootstrap --no-private
-          jaspr --help
+          cat $(where melos)
