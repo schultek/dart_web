@@ -44,6 +44,7 @@ jobs:
       - name: Run
         run: |
           dart create -t cli cli_test
-          echo "executables:\n  cli_test:" >> cli_test/pubspec.yaml
+          echo "executables:\n  cli_test:\n" >> cli_test/pubspec.yaml
+          type cli_test/pubspec.yaml
           dart pub global activate cli_test --source=path
           cli_test --version
