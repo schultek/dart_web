@@ -26,15 +26,24 @@ jobs:
       - uses: dart-lang/setup-dart@v1.3
       - uses: subosito/flutter-action@v2
 
-      - name: Version
-        run: dart --version
-
-      - name: Version
+      - name: Bootstrap
         run: |
-          dart --version
+          dart pub global activate melos
+          melos bootstrap --no-private
+          dart pub global run jaspr --disable-analytics
+
+  test2:
+    name: Test Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - uses: dart-lang/setup-dart@v1.3
+      - uses: subosito/flutter-action@v2
 
       - name: Bootstrap
         run: |
           dart pub global activate melos
           melos bootstrap --no-private
-          jaspr --disable-analytics
+          jaspr --help
