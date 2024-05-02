@@ -174,16 +174,18 @@ class CreateCommand extends BaseCommand {
 
     var directory = Directory(targetPath).absolute;
     var dir = p.basenameWithoutExtension(directory.path);
-    var name = dir.replaceAll('-', '_');
 
     if (directory.existsSync()) {
       usageException('Directory $targetPath already exists.');
     }
 
-    if (name.isEmpty) {
-      usageException('You must specify a snake_case package name.');
-    } else if (!_packageRegExp.hasMatch(name)) {
-      usageException('"$name" is not a valid package name.\n\n'
+    String? packageName = dir.replaceAll('-', '_');
+    if (!_packageRegExp.hasMatch(packageName)) packageName = null;
+
+    packageName = logger.logger.prompt("Specify a name for your project:", defaultValue: packageName);
+
+    if (!_packageRegExp.hasMatch(packageName)) {
+      usageException('"$packageName" is not a valid package name.\n\n'
           'You should use snake_case for the package name e.g. my_jaspr_project');
     }
 
